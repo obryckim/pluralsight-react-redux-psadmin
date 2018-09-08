@@ -1,0 +1,45 @@
+{
+	"name": "pluralsight-react-redux-psadmin",
+	"version": "1.0.0",
+	"description": "Pluralsight Admin application from the Building Applications with React and Redux course",
+	"author": "Michael Obrycki",
+	"license": "ISC",
+	"scripts": {
+		"prestart": "babel-node tools/startMessage.js",
+		"start": "babel-node tools/srcServer.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/obryckim/pluralsight-react-redux-psadmin.git"
+	},
+	"bugs": {
+		"url": "https://github.com/obryckim/pluralsight-react-redux-psadmin/issues"
+	},
+	"homepage": "https://github.com/obryckim/pluralsight-react-redux-psadmin#readme",
+	"dependencies": {
+		"react": "^16.5.0",
+		"react-dom": "^16.5.0",
+		"react-redux": "^5.0.7",
+		"react-router": "^4.3.1",
+		"react-router-redux": "^4.0.8",
+		"redux": "^4.0.0"
+	},
+	"devDependencies": {
+		"babel-cli": "^6.26.0",
+		"babel-core": "^6.26.3",
+		"babel-loader": "^7.0.0",
+		"babel-plugin-react-display-name": "^2.0.0",
+		"babel-preset-env": "^1.7.0",
+		"babel-preset-es2015": "^6.24.1",
+		"babel-preset-react": "^6.24.1",
+		"babel-preset-react-hmre": "^1.1.1",
+		"babel-register": "^6.26.0",
+		"colors": "^1.3.2",
+		"eventsource-polyfill": "^0.9.6",
+		"express": "^4.16.3",
+		"open": "0.0.5",
+		"webpack": "^4.17.2",
+		"webpack-dev-middleware": "^3.2.0",
+		"webpack-hot-middleware": "^2.23.1"
+	}
+}
