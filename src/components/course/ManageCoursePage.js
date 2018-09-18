@@ -4,15 +4,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as courseActions from '../../actions/courseActions';
 import CourseForm from './CourseForm';
+import toastr from 'toastr';
 
 class ManageCoursePage extends React.Component {
-	constructor(props) {
-		super(props);
+	constructor(props, context) {
+		super(props, context);
 
 		// mutable state for this component
 		this.state = {
 			course: Object.assign({}, props.course),
-			errors: {}
+			errors: {},
+			saving: false
 		};
 
 		this.updateCourseState = this.updateCourseState.bind(this);
@@ -37,7 +39,7 @@ class ManageCoursePage extends React.Component {
 	componentDidUpdate(prevProps, prevState) {
 		if (prevProps.course.id !== this.props.course.id) {
 			//Perform some operation here
-			this.setState({ course: Object.assign({}, this.props.course) });
+			this.setState({ course: Object.assign({}, this.props.course) }); // eslint-disable-line react/no-did-update-set-state
 		}
 	}
 
@@ -50,7 +52,20 @@ class ManageCoursePage extends React.Component {
 
 	saveCourse(event) {
 		event.preventDefault();
-		this.props.actions.saveCourse(this.state.course);
+		this.setState({ saving: true });
+
+		this.props.actions
+			.saveCourse(this.state.course)
+			.then(() => this.redirect())
+			.catch(error => {
+				toastr.error(error);
+				this.setState({ saving: false });
+			});
+	}
+
+	redirect() {
+		this.setState({ saving: false });
+		toastr.success('Course saved');
 		this.props.history.push('/courses');
 	}
 
@@ -62,6 +77,7 @@ class ManageCoursePage extends React.Component {
 				onSave={this.saveCourse}
 				course={this.state.course}
 				errors={this.state.errors}
+				saving={this.state.saving}
 			/>
 		);
 	}
