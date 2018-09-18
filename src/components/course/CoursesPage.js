@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as courseActions from '../../actions/courseActions';
 import CourseList from './CourseList';
+import { browserHistory } from 'react-router-dom';
 
 class CoursesPage extends React.Component {
 	// the 5 major pieces of a container component
@@ -14,6 +15,8 @@ class CoursesPage extends React.Component {
 	// this is the best place to do so
 	constructor(props, context) {
 		super(props, context);
+
+		this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
 	}
 
 	// 2) child functions called by render():
@@ -22,6 +25,10 @@ class CoursesPage extends React.Component {
 	// courseRow(course, index) {
 	// 	return <div key={index}>{course.title}</div>;
 	// }
+
+	redirectToAddCoursePage() {
+		browserHistory.push('/course');
+	}
 
 	// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 	// child functions called by render():
@@ -34,6 +41,11 @@ class CoursesPage extends React.Component {
 		return (
 			<div>
 				<h1>Courses</h1>
+				<input
+					type="submit"
+					value="Add Course"
+					className="btn btn-primary"
+					onClick={this.redirectToAddCoursePage} />
 				<CourseList courses={courses} />
 			</div>
 		);
