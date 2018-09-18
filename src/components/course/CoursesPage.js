@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as courseActions from '../../actions/courseActions';
 import CourseList from './CourseList';
-import { browserHistory } from 'react-router-dom';
 
 class CoursesPage extends React.Component {
 	// the 5 major pieces of a container component
@@ -27,7 +26,7 @@ class CoursesPage extends React.Component {
 	// }
 
 	redirectToAddCoursePage() {
-		browserHistory.push('/course');
+		this.props.history.push('/course');
 	}
 
 	// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -54,6 +53,7 @@ class CoursesPage extends React.Component {
 
 // 4) prop types and prop type validation
 CoursesPage.propTypes = {
+	history: PropTypes.object,
 	courses: PropTypes.array.isRequired,
 	actions: PropTypes.object.isRequired
 };
