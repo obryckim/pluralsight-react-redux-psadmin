@@ -1,13 +1,7 @@
-import { createStore, applyMiddleware } from 'redux';
-import rootReducer from '../reducers';
-import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
-import thunk from 'redux-thunk';
-
-export default function configureStore(initialState) {
-	return createStore(
-		rootReducer,
-		initialState,
-		// TODO:: remove reduxImmutableStateInvariant for producion
-		applyMiddleware(thunk, reduxImmutableStateInvariant())
-	);
+// since synamic imports are not supported
+// using require instead of import
+if (process.env.NODE_ENV === 'production') {
+	module.exports = require('./configureStore.prod');
+} else {
+	module.exports = require('./configureStore.dev');
 }
